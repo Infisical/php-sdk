@@ -1,0 +1,44 @@
+name: Deploy to Packagist
+
+on:
+    release:
+        types: [published]
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: "8.0"
+                  extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite
+
+            - name: Install dependencies
+              run: composer install --no-dev --optimize-autoloader
+
+            - name: Validate composer.json
+              run: composer validate
+
+            - name: Check for security vulnerabilities
+              run: composer audit --format=json --no-interaction || true
+
+            - name: Deploy to Packagist
+              run: |
+                  echo "Triggering Packagist update for package: infisical/php-sdk"
+
+                  # Get the release tag from the GitHub context
+                  TAG_NAME=${GITHUB_REF#refs/tags/}
+
+                  # Trigger Packagist update via their API
+                  curl -X POST \
+                    -H "Content-Type: application/json" \
+                    -d "{\"repository\":{\"url\":\"https://github.com/infisical/php-sdk\"}}" \
+                    "https://packagist.org/api/update-package?username=${{ secrets.PACKAGIST_USERNAME }}&apiToken=${{ secrets.PACKAGIST_TOKEN }}"
+
+                  echo "Packagist update triggered for tag: $TAG_NAME"
+                  echo "Package will be available on Packagist within a few minutes."
