@@ -13,7 +13,9 @@ use Infisical\SDK\Http\HttpClient;
 class UniversalAuthService
 {
     private HttpClient $httpClient;
-    /** @var callable(string): void */
+    /**
+     * @var callable(string): void 
+     */
     private $onAuthenticate;
     
     /**
@@ -28,16 +30,18 @@ class UniversalAuthService
     /**
      * Login with client ID and client secret
      *
-     * @param string $clientId The client ID
-     * @param string $clientSecret The client secret
+     * @param  string $clientId     The client ID
+     * @param  string $clientSecret The client secret
      * @return MachineIdentityCredential The machine identity credential
      */
     public function login(string $clientId, string $clientSecret): MachineIdentityCredential
     {
-        $response = $this->httpClient->post("/api/v1/auth/universal-auth/login", [
+        $response = $this->httpClient->post(
+            "/api/v1/auth/universal-auth/login", [
             'clientId' => $clientId,
             'clientSecret' => $clientSecret,
-        ]);
+            ]
+        );
 
         // Parse the JSON response body
         $responseData = json_decode($response->getBody()->getContents(), true);

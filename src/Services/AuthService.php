@@ -13,7 +13,9 @@ use Infisical\SDK\Http\HttpClient;
 class AuthService
 {
     private HttpClient $httpClient;
-    /** @var callable(string): void */
+    /**
+     * @var callable(string): void 
+     */
     private $onAuthenticate;
     
     /**

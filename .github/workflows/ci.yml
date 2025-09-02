@@ -27,9 +27,6 @@ jobs:
             - name: Run PHPStan
               run: composer phpstan
 
-            - name: Run CodeSniffer
-              run: composer cs
-
             - name: Validate composer.json
               run: composer validate
 

@@ -57,9 +57,11 @@ class InfisicalSDK
      */
     private function onAuthenticate(string $accessToken): void
     {
-        $this->httpClient = new HttpClient($this->host, [
+        $this->httpClient = new HttpClient(
+            $this->host, [
             'Authorization' => 'Bearer ' . $accessToken,
-        ]);
+            ]
+        );
 
         $this->secretsService = new SecretsService($this->httpClient);
         $this->authService = new AuthService($this->httpClient, fn(string $token) => $this->onAuthenticate($token));
