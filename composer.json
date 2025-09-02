@@ -32,8 +32,8 @@
     "scripts": {
         "test": "phpunit",
         "phpstan": "phpstan analyse src",
-        "cs": "phpcs src tests",
-        "cs-fix": "phpcbf src tests"
+        "cs": "phpcs src",
+        "cs-fix": "phpcbf src"
     },
     "config": {
         "sort-packages": true,
