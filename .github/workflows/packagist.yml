@@ -38,7 +38,7 @@ jobs:
 
             - name: Publish to Packagist
               run: |-
-                  curl --fail-with-body -X POST -H 'Content-Type: application/json' "https://packagist.org/api/update-package?username=${PACKAGIST_USERNAME}&apiToken=${PACKAGIST_API_KEY}" -d '{"repository":"https://www.github.com/infisical/php-sdk"}'
+                  curl --fail-with-body -X POST -H 'Content-Type: application/json' "https://packagist.org/api/update-package?username=${PACKAGIST_USERNAME}&apiToken=${PACKAGIST_API_KEY}" -d '{"repository":"github.com/Infisical/php-sdk"}'
               env:
                   PACKAGIST_USERNAME: ${{ secrets.PACKAGIST_USERNAME }}
                   PACKAGIST_API_KEY: ${{ secrets.PACKAGIST_API_KEY }}
