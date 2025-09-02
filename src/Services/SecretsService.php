@@ -58,7 +58,7 @@ class SecretsService
             }
         }
 
-        if ($parameters?->attach_to_process_env) {
+        if ($parameters?->attachToProcessEnv) {
             foreach ($secrets as $secret) {
                 putenv($secret->secretKey . '=' . $secret->secretValue);
             }
@@ -75,14 +75,14 @@ class SecretsService
      */
     public function get(?GetSecretParameters $parameters = null): Secret
     {
-        $response = $this->httpClient->get('/api/v3/secrets/raw/' . $parameters?->secretKey, $parameters?->toArray() ?? []);
+        $response = $this->httpClient->get('/api/v3/secrets/raw/' . urlencode($parameters?->secretKey), $parameters?->toArray() ?? []);
         $responseData = json_decode($response->getBody()->getContents(), true);
         return Secret::fromArray($responseData['secret'] ?? []);
     }
 
     public function update(?UpdateSecretParameters $parameters = null): Secret
     {
-        $response = $this->httpClient->patch('/api/v3/secrets/raw/' . $parameters?->secretKey, $parameters?->toArray() ?? []);
+        $response = $this->httpClient->patch('/api/v3/secrets/raw/' . urlencode($parameters?->secretKey), $parameters?->toArray() ?? []);
         $responseData = json_decode($response->getBody()->getContents(), true);
 
 
@@ -91,14 +91,14 @@ class SecretsService
 
     public function delete(?DeleteSecretParameters $parameters = null): Secret
     {
-        $response = $this->httpClient->delete('/api/v3/secrets/raw/' . $parameters?->secretKey, $parameters?->toArray() ?? []);
+        $response = $this->httpClient->delete('/api/v3/secrets/raw/' . urlencode($parameters?->secretKey), $parameters?->toArray() ?? []);
         $responseData = json_decode($response->getBody()->getContents(), true);
         return Secret::fromArray($responseData['secret'] ?? []);
     }
 
     public function create(?CreateSecretParameters $parameters = null): Secret
     {
-        $response = $this->httpClient->post('/api/v3/secrets/raw/' . $parameters?->secretKey, $parameters?->toArray() ?? []);
+        $response = $this->httpClient->post('/api/v3/secrets/raw/' . urlencode($parameters?->secretKey), $parameters?->toArray() ?? []);
         $responseData = json_decode($response->getBody()->getContents(), true);
         return Secret::fromArray($responseData['secret'] ?? []);
     }

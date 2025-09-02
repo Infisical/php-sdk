@@ -30,7 +30,7 @@ class AuthService
      *
      * @return UniversalAuthService
      */
-    public function universal_auth(): UniversalAuthService
+    public function universalAuth(): UniversalAuthService
     {
         return new UniversalAuthService($this->httpClient, $this->onAuthenticate);
     }

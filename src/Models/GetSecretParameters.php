@@ -15,7 +15,7 @@ class GetSecretParameters
         public readonly ?string $projectId = null,
         public readonly ?string $secretPath = null,
         public readonly ?int $version = null,
-        public readonly ?bool $type = null,
+        public readonly ?string $type = null,
         public readonly ?bool $expandSecretReferences = true,
     ) {
     }

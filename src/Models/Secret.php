@@ -38,7 +38,7 @@ class Secret
             $data['version'] ?? 0,
             $data['type'] ?? '',
             $data['secretComment'] ?? '',
-            $data['skipMultilineEncoding'] ?? '',
+            $data['skipMultilineEncoding'] ?? false,
             $data['secretPath'] ?? '',
             $data['secretValueHidden'] ?? false,
         );

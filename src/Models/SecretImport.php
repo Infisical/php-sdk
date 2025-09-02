@@ -30,7 +30,7 @@ class SecretImport
             $data['secretPath'] ?? '',
             $data['environment'] ?? '',
             $data['folderId'] ?? '',
-            array_map(fn($data) => Secret::fromArray($data), $data['secrets'] ?? []),
+            array_map(fn($secretData) => Secret::fromArray($secretData), $data['secrets'] ?? []),
         );
     }
 

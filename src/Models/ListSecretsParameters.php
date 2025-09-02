@@ -19,7 +19,7 @@ class ListSecretsParameters
          * @var array<string>|null 
          */
         public readonly ?array $tagSlugs = null,
-        public readonly ?bool $attach_to_process_env = null,
+        public readonly ?bool $attachToProcessEnv = null,
         public readonly ?bool $skipUniqueValidation = null,
     ) {
     }
@@ -57,8 +57,8 @@ class ListSecretsParameters
             $params['tagSlugs'] = implode(',', $this->tagSlugs);
         }
 
-        if ($this->attach_to_process_env !== null) {
-            $params['attach_to_process_env'] = $this->attach_to_process_env;
+        if ($this->attachToProcessEnv !== null) {
+            $params['attachToProcessEnv'] = $this->attachToProcessEnv;
         }
 
         if ($this->skipUniqueValidation !== null) {

@@ -49,7 +49,13 @@ class UpdateSecretParameters
             $params['secretComment'] = $this->newSecretComment;
         }
 
-        $params['secretKey'] = $this->secretKey;
+        if ($this->newSecretKey !== null) {
+            $params['newSecretName'] = $this->newSecretKey;
+        }
+
+        if ($this->secretKey !== null) {
+            $params['secretKey'] = $this->secretKey;
+        }
 
         return $params;
     }
