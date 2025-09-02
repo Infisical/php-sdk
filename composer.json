@@ -31,7 +31,7 @@
     },
     "scripts": {
         "test": "phpunit",
-        "phpstan": "phpstan analyse src tests",
+        "phpstan": "phpstan analyse src",
         "cs": "phpcs src tests",
         "cs-fix": "phpcbf src tests"
     },
